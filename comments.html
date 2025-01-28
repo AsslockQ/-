@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Комментарии - НеЖдиDокс!{% endblock %}
+
+{% block additional_style %}
+    @font-face {
+        font-family: 'Pixelated';
+        src: url('https://fonts.cdnfonts.com/css/press-start-2p') format('woff2');
+    }
+    body {
+        font-family: 'Press Start 2P', system-ui;
+        background-color: rgb(51, 51, 51);
+        color: white;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+    }
+    .logo img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .logo-text {
+        font-size: 24px;
+    }
+    .comments-section {
+        background-color: #444;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .comment {
+        background-color: #555;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 4px;
+    }
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: #aaa;
+    }
+    .comment-form {
+        margin-top: 20px;
+    }
+    .comment-input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #666;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-family: inherit;
+    }
+    .submit-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: inherit;
+    }
+    .submit-button:hover {
+        background-color: #45a049;
+    }
+    .name-input {
+        background-color: #666;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-family: 'Press Start 2P';
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .submit-btn {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        font-family: 'Press Start 2P';
+    }
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="/static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+        <button class="submit-btn">Поддержать</button>
+    </div>
+
+    <h2>Комментарии</h2>
+
+    <div class="comments-section">
+        {% for comment in comments %}
+        <div class="comment">
+            <div class="comment-header">
+                <span>{{ comment.author }}</span>
+                <span>{{ comment.date }}</span>
+            </div>
+            <div class="comment-content">
+                {{ comment.content }}
+            </div>
+        </div>
+        {% endfor %}
+
+        <form class="comment-form" action="{{ url_for('add_comment') }}" method="post">
+            <input type="text" name="author" placeholder="Ваше имя" class="comment-input" required>
+            <textarea name="content" placeholder="Ваш комментарий" class="comment-input" rows="4" required></textarea>
+            <button type="submit" class="submit-button">Отправить</button>
+        </form>
+    </div>
+{% endblock %}

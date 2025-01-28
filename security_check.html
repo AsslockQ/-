@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка Безопасности - НеЖдиDокс!</title>
+    <style>
+        @font-face {
+            font-family: 'Pixelated';
+            src: url('https://fonts.cdnfonts.com/css/press-start-2p') format('woff2');
+        }
+        body {
+            font-family: 'Press Start 2P', system-ui;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+        }
+        .security-check {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .question {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #555;
+            border-radius: 4px;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            font-family: 'Press Start 2P';
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #555;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="/static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+    </div>
+
+    <div class="security-check">
+        <h2>Проверка Безопасности</h2>
+        <div class="progress-bar">
+            <div class="progress" id="progress" style="width: 0%"></div>
+        </div>
+        <form id="securityForm" action="/security-check" method="POST">
+            <div class="question">
+                <p>1. Используете ли вы двухфакторную аутентификацию?</p>
+                <div class="options">
+                    <label><input type="radio" name="2fa" value="yes"> Да</label>
+                    <label><input type="radio" name="2fa" value="no"> Нет</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>2. Как часто вы меняете пароли?</p>
+                <div class="options">
+                    <label><input type="radio" name="password_change" value="monthly"> Ежемесячно</label>
+                    <label><input type="radio" name="password_change" value="quarterly"> Раз в квартал</label>
+                    <label><input type="radio" name="password_change" value="yearly"> Раз в год</label>
+                    <label><input type="radio" name="password_change" value="never"> Никогда</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>3. Используете ли вы уникальные пароли для разных сервисов?</p>
+                <div class="options">
+                    <label><input type="radio" name="unique_passwords" value="yes"> Да</label>
+                    <label><input type="radio" name="unique_passwords" value="no"> Нет</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>4. Установлен ли у вас антивирус?</p>
+                <div class="options">
+                    <label><input type="radio" name="antivirus" value="yes"> Да</label>
+                    <label><input type="radio" name="antivirus" value="no"> Нет</label>
+                </div>
+            </div>
+
+            <div class="question">
+                <p>5. Делаете ли вы регулярные резервные копии важных данных?</p>
+                <div class="options">
+                    <label><input type="radio" name="backup" value="yes"> Да</label>
+                    <label><input type="radio" name="backup" value="no"> Нет</label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Проверить</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('securityForm');
+        const progress = document.getElementById('progress');
+        const questions = document.querySelectorAll('.question');
+        
+        form.addEventListener('change', () => {
+            const answered = form.querySelectorAll('input:checked').length;
+            const total = questions.length;
+            const percentage = (answered / total) * 100;
+            progress.style.width = percentage + '%';
+        });
+    </script>
+</body>
+</html>

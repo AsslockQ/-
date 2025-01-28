@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}НеЖдиDокс!{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    {% block additional_head %}{% endblock %}
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Press Start 2P', system-ui;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+        }
+        .content {
+            flex: 1;
+        }
+        .support-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .support-button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        {% block additional_style %}{% endblock %}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+        <a href="https://www.donationalerts.com/r/azaxter7k" class="support-button" target="_blank">
+            Поддержать нас
+        </a>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="footer">
+        <a href="{{ url_for('support') }}" class="support-button">
+            Поддержать нас
+        </a>
+    </div>
+</body>
+</html>

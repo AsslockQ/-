@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НеЖдиDокс!</title>
+    <style>
+        @font-face {
+            font-family: 'Pixelated';
+            src: url('https://fonts.cdnfonts.com/css/press-start-2p') format('woff2');
+        }
+        body {
+            font-family: 'Press Start 2P', system-ui;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+        }
+        .settings {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .nav-link {
+            background-color: rgb(68, 68, 68);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+            transition: background-color 0.3s;
+        }
+        .nav-link:hover {
+            background-color: rgb(85, 85, 85);
+        }
+        .description {
+            font-size: 12px;
+            margin: 20px 0;
+            max-width: 70%;
+            line-height: 1.5;
+        }
+        .logo-image {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            opacity: 0.5;
+        }
+        h2 {
+            font-size: 16px;
+            margin: 30px 0 20px 0;
+            border-bottom: 2px solid white;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin: 10px 0;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .quiz-button {
+            display: inline-block;
+            background-color: rgb(68, 68, 68);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        .video-section {
+            margin-top: 40px;
+        }
+        .video-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .watch-button {
+            background-color: rgb(68, 68, 68);
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .tools-section {
+            margin-top: 40px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .tool-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(68, 68, 68);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .arrow {
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .news-section {
+            margin-top: 40px;
+        }
+        .news-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid white;
+        }
+        .news-date {
+            font-size: 12px;
+            color: #ccc;
+        }
+        .news-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .news-description {
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .news-source {
+            font-size: 12px;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: -100px;
+            left: 20px;
+            right: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="/static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+        <div class="settings"></div>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="/security-check" class="nav-link">Проверка безопасности</a>
+        <a href="/forum" class="nav-link">Форум</a>
+        <a href="templates/support.html" class="nav-link">О нас</a>
+    </div>
+
+    <div class="description">
+        НАША ЦЕЛЬ - ПОВЫСИТЬ УРОВЕНЬ ОБУЧЕНИЕ НАСЕЛЕНИЯ ОСНОВАМ БЕЗОПАСНОСТИ В ИНТЕРНЕТЕ И КИБЕРГИГИЕНЕ.
+    </div>
+
+    <img src="/static/logo-removebg-preview.png" alt="Logo" class="logo-image">
+
+    <h2>Методичка по кибергигиене</h2>
+    <ul>
+        <li>Всегда используйте сложные пароли, содержащие символы, буквы и спец. символы.</li>
+        <li>Никогда не используйте один и тот же пароль для разных аккаунтов.</li>
+        <li>Проверяйте, что сайты используют HTTPS.</li>
+        <li>Проверяйте адрес сайта: dotabuff.ru может быть dotabaff.ru</li>
+        <li>Всегда используйте двухфакторную аутентификацию.</li>
+        <li>Регулярно обновляйте операционку и приложения, чтобы исправить уязвимости.</li>
+        <li>Будьте осторожны с подозрительными письмами.</li>
+        <li>Теперь вы готовы!</li>
+    </ul>
+
+    <a href="/quiz" class="quiz-button">Перейти к квизу</a>
+
+    <div class="video-section">
+        <h2>Полезные видеоматериалы</h2>
+        <div class="video-link">
+            <span>Как не попасться на уловки мошенников?</span>
+            <a href="https://rutube.ru/video/ef25ce13235899f5ee247334851d0f10/" target="_blank" class="watch-button">Смотреть</a>
+        </div>
+        <div class="video-link">
+            <span>Как создать аккаунт на Госуслугах?</span>
+            <a href="https://rutube.ru/video/9fb311aa3011e30d212f04c96efd6f69/" target="_blank" class="watch-button">Смотреть</a>
+        </div>
+        <div class="video-link">
+            <span>Что такое прокси и DNS?</span>
+            <a href="https://rutube.ru/video/b0009a88c0869f881ca334538edc1b1f/" target="_blank" class="watch-button">Смотреть</a>
+        </div>
+    </div>
+
+    <div class="tools-section">
+        <h2>Инструменты безопасности</h2>
+        <div class="tools-grid">
+            <a href="/password-generator" class="tool-button">
+                <span>Генератор паролей</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="/threat-map" class="tool-button">
+                <span>Карта угроз</span>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="news-section">
+        <h2>Новости кибербезопасности</h2>
+        {% for news_item in news %}
+        <div class="news-item">
+            <div class="news-date">{{ news_item.date }}</div>
+            <div class="news-title">{{ news_item.title }}</div>
+            <div class="news-description">{{ news_item.description }}</div>
+            <div class="news-source">Источник: {{ news_item.source }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <a href="/?help">7К</a>
+        <a href="{{ url_for('support') }}">О нас</a>
+        <a href="https://www.donationalerts.com/r/azaxter7k">Поддержать нас</a>
+        <a href="https://rutube.ru/video/c6cc4d620b1d4338901770a44b3e82f4/" target="_blank">FAQ</a>
+    </div>
+</body>
+</html>

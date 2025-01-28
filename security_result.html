@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты Проверки - НеЖдиDокс!</title>
+    <style>
+        @font-face {
+            font-family: 'Pixelated';
+            src: url('https://fonts.cdnfonts.com/css/press-start-2p') format('woff2');
+        }
+        body {
+            font-family: 'Press Start 2P', system-ui;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+        }
+        .results {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .score {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background-color: #555;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            border-radius: 15px;
+            transition: width 1s ease-in-out;
+        }
+        .recommendations {
+            text-align: left;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #555;
+            border-radius: 8px;
+        }
+        .recommendation-item {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        .back-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 0;
+            cursor: pointer;
+            font-family: 'Press Start 2P';
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="/static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+    </div>
+
+    <div class="results">
+        <h2>Результаты Проверки Безопасности</h2>
+        
+        <div class="score">
+            {{ score }}/{{ max_score }}
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress" style="width: {{ percentage }}%; background-color: 
+                {% if percentage < 40 %}#ff4444
+                {% elif percentage < 70 %}#ffaa33
+                {% else %}#4CAF50
+                {% endif %};">
+            </div>
+        </div>
+        
+        <div class="recommendations">
+            <h3>Рекомендации по улучшению:</h3>
+            {% if score < max_score %}
+                {% if request.form.get('2fa') != 'yes' %}
+                <div class="recommendation-item">
+                    Включите двухфакторную аутентификацию на всех важных аккаунтах
+                </div>
+                {% endif %}
+                
+                {% if request.form.get('password_change') not in ['monthly', 'quarterly'] %}
+                <div class="recommendation-item">
+                    Регулярно меняйте пароли (рекомендуется раз в квартал)
+                </div>
+                {% endif %}
+                
+                {% if request.form.get('unique_passwords') != 'yes' %}
+                <div class="recommendation-item">
+                    Используйте уникальные пароли для разных сервисов
+                </div>
+                {% endif %}
+                
+                {% if request.form.get('antivirus') != 'yes' %}
+                <div class="recommendation-item">
+                    Установите и регулярно обновляйте антивирусное ПО
+                </div>
+                {% endif %}
+                
+                {% if request.form.get('backup') != 'yes' %}
+                <div class="recommendation-item">
+                    Регулярно делайте резервные копии важных данных
+                </div>
+                {% endif %}
+            {% else %}
+                <div class="recommendation-item">
+                    Отлично! Продолжайте поддерживать высокий уровень безопасности
+                </div>
+            {% endif %}
+        </div>
+        
+        <a href="/security-check" class="back-btn">Пройти снова</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}НеЖдиDокс! - Карта угроз{% endblock %}
+
+{% block additional_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block additional_style %}
+    body {
+        font-family: 'Press Start 2P', system-ui;
+        background-color: rgb(51, 51, 51);
+        color: white;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+    }
+    .logo img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    .logo-text {
+        font-size: 24px;
+    }
+    .map-container {
+        margin-top: 40px;
+        background-color: rgb(68, 68, 68);
+        padding: 20px;
+        border-radius: 5px;
+    }
+    .chart-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    .region-selector {
+        margin: 20px 0;
+    }
+    select {
+        background-color: rgb(51, 51, 51);
+        color: white;
+        border: none;
+        padding: 10px;
+        font-family: 'Press Start 2P';
+        font-size: 12px;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .back-button {
+        display: inline-block;
+        background-color: rgb(68, 68, 68);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+    .threat-info {
+        margin-top: 20px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+    </div>
+
+    <h2>Интерактивная карта киберугроз</h2>
+
+    <div class="map-container">
+        <div class="region-selector">
+            <label for="region">Выберите регион:</label>
+            <select id="region" onchange="updateChart()">
+                {% for region in threats.keys() %}
+                <option value="{{ region }}">{{ region }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="threatChart"></canvas>
+        </div>
+
+        <div class="threat-info">
+            <p>* Данные представлены в процентном соотношении различных типов кибератак в регионе</p>
+        </div>
+    </div>
+
+    <a href="/" class="back-button"> Вернуться на главную</a>
+
+    <script>
+        let myChart = null;
+
+        function updateChart() {
+            const region = document.getElementById('region').value;
+            const threats = {{ threats | tojson }};
+            const data = threats[region];
+
+            const ctx = document.getElementById('threatChart').getContext('2d');
+            
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(data).map(key => key.replace('_', ' ').toUpperCase()),
+                    datasets: [{
+                        data: Object.values(data),
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 206, 86)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        }
+
+        // Инициализация графика при загрузке страницы
+        window.onload = updateChart;
+    </script>
+{% endblock %}

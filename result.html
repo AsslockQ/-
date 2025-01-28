@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты</title>
+</head>
+<body>
+    <h1>Результаты викторины</h1>
+    <p>Вы набрали {{ score }} из {{ total_questions }} баллов.</p>
+    
+    {% if score == total_questions %}
+        <p>Отлично! Вы прекрасно разбираетесь в кибергигиене.</p>
+    {% elif score == total_questions - 1 %}
+        <p>Неплохо! Стоит немного подтянуть знания.</p>
+    {% else %}
+        <p>.</p>
+    {% endif %}
+
+    <a href="/">Вернуться на главную</a>
+</body>
+</html>

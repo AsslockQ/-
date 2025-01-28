@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <circle cx="250" cy="250" r="240" fill="black" stroke="white" stroke-width="5"/>
+  <path fill="white" d="M250 60
+    C180 60 120 120 120 190
+    C120 230 140 270 180 290
+    L180 350
+    L320 350
+    L320 290
+    C360 270 380 230 380 190
+    C380 120 320 60 250 60
+    Z"/>
+  <path fill="black" d="M200 170
+    A30 30 0 0 0 200 230
+    A30 30 0 0 0 200 170
+    M300 170
+    A30 30 0 0 0 300 230
+    A30 30 0 0 0 300 170"/>
+  <path fill="none" stroke="black" stroke-width="15" d="M180 300
+    Q250 340 320 300"/>
+  <path fill="white" d="M100 190
+    L70 160
+    L50 200
+    L100 190
+    M400 190
+    L430 160
+    L450 200
+    L400 190"/>
+</svg>

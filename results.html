@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НЖДокс! - Результаты</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', system-ui;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+        }
+        .results-container {
+            margin-top: 40px;
+            background-color: rgb(68, 68, 68);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .score {
+            font-size: 32px;
+            margin: 20px 0;
+            color: #4CAF50;
+        }
+        .message {
+            font-size: 14px;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        .result-details {
+            margin: 30px 0;
+            text-align: left;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: rgb(60, 60, 60);
+        }
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+        }
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+        }
+        .progress-circle .bg {
+            stroke: rgb(51, 51, 51);
+        }
+        .progress-circle .progress {
+            stroke: #4CAF50;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        .retry-button {
+            display: inline-block;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin: 20px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo">
+            <img src="static/logo-removebg-preview.png" alt="Anonymous Logo">
+            <span class="logo-text">НеЖдиDокс!</span>
+        </a>
+    </div>
+
+    <div class="results-container">
+        <h2>Результаты викторины</h2>
+        
+        <div class="progress-circle">
+            <svg width="150" height="150">
+                <circle class="bg" cx="75" cy="75" r="65" />
+                <circle class="progress" cx="75" cy="75" r="65" 
+                    stroke-dasharray="408.4"
+                    stroke-dashoffset="{{ (1 - score/total_questions) * 408.4 }}" />
+            </svg>
+            <div class="score">{{ score }}/{{ total_questions }}</div>
+        </div>
+
+
+        <div class="result-details">
+            <p>Комментарий к результату:</p>
+            {% if score == total_questions %}
+            <p>Отлично! Тебя не докснули</p>
+            {% elif score == total_questions - 1 %}
+            <p>Тебя почти докснули</p>
+            {% else %}
+            <p>ебя докснули, я забрал все твои акки...</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <a href="/quiz" class="retry-button">Пройти еще раз</a>
+            <a href="/" class="retry-button">На главную</a>
+        </div>
+    </div>
+</body>
+</html>
